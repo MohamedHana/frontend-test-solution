@@ -28,11 +28,12 @@ const endpoints = {
     getArticles: (categoryId) => {
       return endpoint({ path: "category/" + categoryId })
     },
-    search: (requestParameters) => {
-      return endpoint({ path: "categories" + constructQueryParameters(requestParameters) })
-    },
-    reload: endpoint({ path: "categories/" }),
   },
+  articles: {
+    search: (requestParameters) => {
+      return endpoint({ path: "search/" + constructQueryParameters(requestParameters) })
+    },
+  }
 }
 
 export default endpoints

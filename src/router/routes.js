@@ -1,14 +1,20 @@
 const routerOptions = [
   {
     path: "/",
-    name: "Home",
-    component: "home/Home",
+    name: "HomePage",
+    component: "home/HomePage",
     meta: {},
   },
   {
     path: "/category/:id",
-    name: "Category",
-    component: "category/Category",
+    name: "CategoryPage",
+    component: "category/CategoryPage",
+    meta: {},
+  },
+  {
+    path: "/article/:id",
+    name: "ArticlePage",
+    component: "article/ArticlePage",
     meta: {},
   },
   {

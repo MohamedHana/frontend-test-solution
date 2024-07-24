@@ -22,10 +22,6 @@ html {
   margin-left: auto;
 }
 
-.p-relative {
-  position: relative;
-}
-
 @keyframes placeHolderShimmer {
   0% {
     background-position: -468px 0
@@ -63,15 +59,3 @@ html {
   box-shadow: $card-box-shadow;
   transition: transform 0.2s;
 }
-
-@media (max-width: 575.98px) {}
-
-@media (min-width: 576px) {}
-
-@media (min-width: 768px) {}
-
-@media (min-width: 992px) {}
-
-@media (min-width: 1200px) {}
-
-@media (min-width: 1400px) {}

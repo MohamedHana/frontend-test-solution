@@ -11,12 +11,6 @@ export default new Vuex.Store({
       error: null,
       data: []
     },
-    search: {
-      loading: false,
-      error: null,
-      query: '',
-      results: [],
-    }
   },
   mutations: {
     setCategoriesLoading(state, payload) {
@@ -53,6 +47,5 @@ export default new Vuex.Store({
     haveCategories: (state, getters) => getters.categories.length > 0,
     categoriesAreLoading: (state) => state.categories.loading,
     categoriesError: (state) => state.categories.error,
-    answers: (state) => state.search.results,
   }
 })

@@ -1,13 +1,31 @@
 <template>
   <div class="container">
     <div class="card">
-      <h4>404 - Page not found</h4>
+      <h4>{{ article.title }}</h4>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  name: "ArticlePage",
+  components: {},
+  created() { },
+  mounted() { },
+  beforeUnmount() { },
+  props: {
+    article: {
+      default: function () {
+        return { title: 'Article title' }
+      }
+    }
+  },
+  data() {
+    return {}
+  },
+  computed: {},
+  watch: {},
+  methods: {},
 }
 </script>
 
