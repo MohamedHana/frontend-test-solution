@@ -30,7 +30,7 @@ Follow these steps to get the application up and running using Docker:
 
 ```bash
 git clone https://github.com/MohamedHana/frontend-test-solution.git
-cd tawkto-frontend-take-home
+cd frontend-test-solution
 ```
 
 ### 2. Build the Docker Image
