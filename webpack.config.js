@@ -50,6 +50,7 @@ module.exports = {
 		port: 9000,
 		historyApiFallback: true,
 		disableHostCheck: true,
+		host: '0.0.0.0',
 		before: function (app, server, compiler) {
 			app.get('/api/categories', function (req, res) {
 				res.json(dataObj.categories);
