@@ -1,11 +1,11 @@
 'use strict'
 
 const path = require("path");
-const { VueLoaderPlugin } = require('vue-loader');
 const dataObj = require("./data/data.json");
 
 module.exports = {
 	entry: [
+		'babel-polyfill',
 		'./src/app.js'
 	],
 	output: {
@@ -34,11 +34,19 @@ module.exports = {
 					name: '[name].[ext]',
 				},
 			},
+		},
+		{
+			test: /\.js$/,
+			exclude: /node_modules/,
+			use: {
+				loader: 'babel-loader',
+				options: {
+					presets: ['@babel/preset-env']
+				}
+			}
 		}]
 	},
-	plugins: [
-		new VueLoaderPlugin()
-	],
+	plugins: [],
 	resolve: {
 		alias: {
 			fonts: path.resolve(__dirname, 'src/assets/fonts'),

@@ -37,6 +37,8 @@ export default {
 @import '@/scss/_variables.scss';
 
 .category-card {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 315px;
   flex: 0 0 315px;
   background-color: $white;
   border-radius: 4px;
@@ -45,10 +47,14 @@ export default {
   text-align: center;
   text-decoration: none;
   box-shadow: $card-box-shadow;
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
   transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
   cursor: pointer;
 
   &:hover {
+    -webkit-transform: translateY(-5px);
     transform: translateY(-5px);
   }
 

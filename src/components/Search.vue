@@ -151,13 +151,21 @@ export default {
 
   .search-container {
     position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     margin-bottom: 2px;
     border-radius: 4px;
 
     #search-input {
+      -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
       flex-grow: 1;
       padding: 15px;
       padding-right: 40px;
@@ -181,8 +189,14 @@ export default {
       cursor: pointer;
       border-radius: 0 3px 4px 0;
       font-size: 1em;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
       align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
       justify-content: center;
 
       &:focus {
@@ -204,7 +218,6 @@ export default {
         font-size: 1.2em;
       }
     }
-
   }
 
   .box-shadow {
@@ -235,8 +248,14 @@ export default {
   }
 
   .panel {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     padding: 20px 30px;
     font-size: 1rem;
@@ -258,6 +277,8 @@ export default {
     position: absolute;
     right: 90px;
     top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     border: none;
     background: transparent;

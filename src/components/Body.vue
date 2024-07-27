@@ -25,6 +25,8 @@ export default {
 
 #body-wrapper {
   background: $body-background;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
   flex: 1;
 }
 </style>

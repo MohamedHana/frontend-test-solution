@@ -112,20 +112,33 @@ export default {
   overflow: hidden;
   margin-top: 25px;
   margin-bottom: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   gap: 20px;
   padding: 10px;
 
   &.sm {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
   }
 }
 
 .categories-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 20px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
 
   &.lg {
@@ -142,8 +155,14 @@ export default {
 }
 
 .arrow-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   width: 50px;
   height: 50px;
@@ -151,6 +170,7 @@ export default {
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  -webkit-transition: box-shadow 0.3s ease;
   transition: box-shadow 0.3s ease;
   font-size: 20px;
   color: #a0a0a0;
