@@ -182,11 +182,15 @@ export default {
 }
 
 .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   margin-top: 30px;
 }
 
 .sidebar {
+  -webkit-box-flex: 1.2;
+  -ms-flex: 1.2;
   flex: 1.2;
   margin-right: 50px;
 
@@ -267,6 +271,8 @@ export default {
 }
 
 .listing-area {
+  -webkit-box-flex: 3;
+  -ms-flex: 3;
   flex: 3;
 }
 
@@ -283,6 +289,9 @@ export default {
 
 @media (max-width: 768px) {
   .content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
   }
 
@@ -319,9 +328,15 @@ export default {
 }
 
 .categories-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   gap: 20px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   margin-top: 25px;
   margin-bottom: 60px;

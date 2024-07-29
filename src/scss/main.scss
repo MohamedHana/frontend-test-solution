@@ -1,9 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:300,400,700&subset=latin-ext");
-@import 'font-awesome.css';
-@import './_variables.scss';
+@import "font-awesome.css";
+@import "./_variables.scss";
 
 * {
   font-family: $font-family;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -22,13 +24,43 @@ html {
   margin-left: auto;
 }
 
-@keyframes placeHolderShimmer {
+@-webkit-keyframes placeHolderShimmer {
   0% {
-    background-position: -468px 0
+    background-position: -468px 0;
   }
 
   100% {
-    background-position: 468px 0
+    background-position: 468px 0;
+  }
+}
+
+@-moz-keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+@-o-keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+
+  100% {
+    background-position: 468px 0;
   }
 }
 
@@ -37,13 +69,30 @@ html {
   text-align: center;
   text-decoration: none;
   box-shadow: $card-box-shadow;
+  -webkit-transition: -webkit-transform 0.2s;
+  -moz-transition: -moz-transform 0.2s;
+  -o-transition: -o-transform 0.2s;
   transition: transform 0.2s;
+  -webkit-animation-duration: 1s;
   animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
+  -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
+  -webkit-animation-name: placeHolderShimmer;
   animation-name: placeHolderShimmer;
+  -webkit-animation-timing-function: linear;
   animation-timing-function: linear;
   background: $white;
+  background: -webkit-linear-gradient(
+    left,
+    #eeeeee 8%,
+    #dddddd 18%,
+    #eeeeee 33%
+  );
+  background: -moz-linear-gradient(left, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background: -ms-linear-gradient(left, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background: -o-linear-gradient(left, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
   background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
   background-size: 1000px 104px;
   position: relative;
@@ -51,11 +100,29 @@ html {
 }
 
 .card {
+  -webkit-flex: 1 0;
+  -moz-flex: 1 0;
+  -ms-flex: 1 0;
   flex: 1 0;
   background-color: $white;
   border-radius: 4px;
   padding: 30px;
   margin-bottom: 0;
   box-shadow: $card-box-shadow;
+  -webkit-transition: -webkit-transform 0.2s;
+  -moz-transition: -moz-transform 0.2s;
+  -o-transition: -o-transform 0.2s;
   transition: transform 0.2s;
+}
+
+/* IE10+ */
+::-ms-clear {
+  display: none;
+}
+
+::-webkit-search-decoration,
+::-webkit-search-cancel-button,
+::-webkit-search-results-button,
+::-webkit-search-results-decoration {
+  display: none;
 }

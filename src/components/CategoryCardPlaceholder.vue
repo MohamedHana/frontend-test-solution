@@ -23,6 +23,8 @@ export default {
 @import '@/scss/_variables.scss';
 
 .category-card-placeholder {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 315px;
   flex: 0 0 315px;
   border-radius: 4px;
   padding: 30px;
@@ -30,17 +32,46 @@ export default {
   text-align: center;
   text-decoration: none;
   box-shadow: $card-box-shadow;
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
   transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
+  -webkit-animation-duration: 1s;
   animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
+  -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
+  -webkit-animation-name: placeHolderShimmer;
   animation-name: placeHolderShimmer;
+  -webkit-animation-timing-function: linear;
   animation-timing-function: linear;
   background: $white;
+  background: -webkit-gradient(linear, left top, right top, from(#eeeeee), color-stop(8%, #dddddd), to(#eeeeee));
   background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
   background-size: 1000px 104px;
   height: 200px;
   position: relative;
   overflow: hidden;
+}
+
+@-webkit-keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+
+  100% {
+    background-position: 468px 0;
+  }
 }
 </style>

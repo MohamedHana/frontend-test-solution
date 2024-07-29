@@ -4,9 +4,10 @@ module.exports = {
       '@babel/preset-env',
       {
         targets: {
-          node: '14',
-          browsers: ['defaults', 'not ie <= 10']
-        }
+          ie: '10'
+        },
+        useBuiltIns: 'entry',
+        corejs: 3
       }
     ]
   ],
