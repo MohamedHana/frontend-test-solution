@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:300,400,700&subset=latin-ext");
-@import 'font-awesome.css';
-@import './_variables.scss';
+@import "font-awesome.css";
+@import "./_variables.scss";
 
 * {
   font-family: $font-family;
@@ -84,7 +84,12 @@ html {
   -webkit-animation-timing-function: linear;
   animation-timing-function: linear;
   background: $white;
-  background: -webkit-linear-gradient(left, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background: -webkit-linear-gradient(
+    left,
+    #eeeeee 8%,
+    #dddddd 18%,
+    #eeeeee 33%
+  );
   background: -moz-linear-gradient(left, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
   background: -ms-linear-gradient(left, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
   background: -o-linear-gradient(left, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
@@ -108,4 +113,16 @@ html {
   -moz-transition: -moz-transform 0.2s;
   -o-transition: -o-transform 0.2s;
   transition: transform 0.2s;
+}
+
+/* IE10+ */
+::-ms-clear {
+  display: none;
+}
+
+::-webkit-search-decoration,
+::-webkit-search-cancel-button,
+::-webkit-search-results-button,
+::-webkit-search-results-decoration {
+  display: none;
 }

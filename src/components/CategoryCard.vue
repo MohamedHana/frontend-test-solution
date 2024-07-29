@@ -6,7 +6,9 @@
     <h2>{{ category.title }}</h2>
     <div class="caption">
       <span class="text-green">{{ category.totalArticle }} articles</span>
-      <span class="text-small">Last update {{ category.updatedOn | timeAgo }}</span>
+      <span class="text-small"
+        >Last update {{ category.updatedOn | timeAgo }}</span
+      >
     </div>
   </router-link>
 </template>
@@ -15,32 +17,33 @@
 export default {
   name: "CategoryCard",
   components: {},
-  created() { },
-  mounted() { },
-  beforeUnmount() { },
+  created() {},
+  mounted() {},
+  beforeUnmount() {},
   props: {
     category: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
-    return {}
+    return {};
   },
   computed: {},
   watch: {},
   methods: {},
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/_variables.scss';
+@import "@/scss/_variables.scss";
 
 .category-card {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 315px;
   flex: 0 0 315px;
   background-color: $white;
+  background: $white;
   border-radius: 4px;
   padding: 30px;
   margin-bottom: 0;
@@ -55,6 +58,8 @@ export default {
 
   &:hover {
     -webkit-transform: translateY(-5px);
+    -moz-transform: translateY(-5px);
+    -o-transform: translateY(-5px);
     transform: translateY(-5px);
   }
 
@@ -86,6 +91,16 @@ export default {
     .text-green {
       color: $green;
     }
+  }
+}
+
+.old-browsers-class {
+  .category-card {
+    width: 30%;
+    background-color: $white;
+    background: $white;
+    float: left;
+    margin: 1.66%;
   }
 }
 </style>

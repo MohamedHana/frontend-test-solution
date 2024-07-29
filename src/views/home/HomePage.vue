@@ -1,7 +1,10 @@
 <template>
   <div class="container">
     <div v-if="categoriesAreLoading" class="loading-area">
-      <category-card-placeholder v-for="i in 6" :key="i"></category-card-placeholder>
+      <category-card-placeholder
+        v-for="i in 6"
+        :key="i"
+      ></category-card-placeholder>
     </div>
     <div v-else-if="categoriesError" class="error-area">
       <div class="card error-card">
@@ -12,7 +15,11 @@
       </div>
     </div>
     <div v-else-if="haveCategories" class="categories-grid">
-      <category-card v-for="category in categories" :key="category.id" :category="category"></category-card>
+      <category-card
+        v-for="category in categories"
+        :key="category.id"
+        :category="category"
+      ></category-card>
     </div>
     <div v-else class="empty-results-area">
       <div class="card empty-results-card">
@@ -26,40 +33,45 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
-import CategoryCardPlaceholder from '@/components/CategoryCardPlaceholder.vue'
-import CategoryCard from '@/components/CategoryCard.vue'
+import { mapActions, mapGetters } from "vuex";
+import CategoryCardPlaceholder from "@/components/CategoryCardPlaceholder.vue";
+import CategoryCard from "@/components/CategoryCard.vue";
 
 export default {
   name: "HomePage",
   components: {
     CategoryCardPlaceholder,
-    CategoryCard
+    CategoryCard,
   },
   created() {
     if (!this.haveCategories && !this.categoriesAreLoading) {
-      this.fetchCategories()
+      this.fetchCategories();
     }
   },
-  mounted() { },
-  beforeUnmount() { },
+  mounted() {},
+  beforeUnmount() {},
   data() {
     return {
-      query: '',
-    }
+      query: "",
+    };
   },
   computed: {
-    ...mapGetters(['categories', 'haveCategories', 'categoriesAreLoading', 'categoriesError']),
+    ...mapGetters([
+      "categories",
+      "haveCategories",
+      "categoriesAreLoading",
+      "categoriesError",
+    ]),
   },
   watch: {},
   methods: {
-    ...mapActions(['fetchCategories'])
+    ...mapActions(["fetchCategories"]),
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/_variables.scss';
+@import "@/scss/_variables.scss";
 
 .container {
   max-width: 1200px;
@@ -156,6 +168,20 @@ export default {
 
   .empty-results-area {
     padding: 0 20px;
+  }
+}
+
+.old-browsers-class {
+  .categories-grid {
+    width: 96%;
+    margin: 0 auto;
+    overflow: hidden;
+
+    &::after {
+      // content: "";
+      display: table;
+      clear: both;
+    }
   }
 }
 </style>
