@@ -94,13 +94,13 @@ export default {
   }
 }
 
-.old-browsers-class {
+.ie10-class {
   .category-card {
-    width: 30%;
+    width: 315px;
     background-color: $white;
     background: $white;
     float: left;
-    margin: 1.66%;
+    margin: 15px;
   }
 }
 </style>

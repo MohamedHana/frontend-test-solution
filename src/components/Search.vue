@@ -1,12 +1,30 @@
 <template>
   <div class="search-area" ref="searchArea">
     <div class="search-container" :class="{ 'box-shadow': dropdown.visible }">
-      <input v-model.trim="query" type="text" id="search-input" placeholder="Search for answers" @keyup.enter="search"
-        aria-label="Search for answers" aria-describedby="search-button" @focus="showDropdown" autocomplete="off">
-      <button v-if="query && !loading" @click.prevent.stop="reset" class="reset-button">
+      <input
+        v-model.trim="query"
+        type="text"
+        id="search-input"
+        placeholder="Search for answers"
+        @keyup.enter="search"
+        aria-label="Search for answers"
+        aria-describedby="search-button"
+        @focus="showDropdown"
+        autocomplete="off"
+      />
+      <button
+        v-if="query && !loading"
+        @click.prevent.stop="reset"
+        class="reset-button"
+      >
         <i class="fas fa-times"></i>
       </button>
-      <button :disabled="loading" @click="search" class="search-button" type="button">
+      <button
+        :disabled="loading"
+        @click="search"
+        class="search-button"
+        type="button"
+      >
         <i v-if="loading" class="fa fa-circle-notch fa-spin"></i>
         <i v-else class="fa fa-search"></i>
       </button>
@@ -25,8 +43,12 @@
         Couldn't load articles
       </div>
       <div v-else-if="haveArticles" class="results">
-        <a v-for="(article, index) in publishedArticles" :key="article.id" class="dropdown-item"
-          @click.prevent="showArticle(article)">
+        <a
+          v-for="(article, index) in publishedArticles"
+          :key="article.id"
+          class="dropdown-item"
+          @click.prevent="showArticle(article)"
+        >
           <i :class="'fa fa-' + article.icon"></i>
           {{ article.title }}
         </a>
@@ -40,110 +62,119 @@
 </template>
 
 <script>
-import api from '@/api'
+import api from "@/api";
 
 export default {
   name: "Search",
   components: {},
-  created() { },
+  created() {},
   mounted() {
-    document.addEventListener('click', this.handleClickOutside)
+    document.addEventListener("click", this.handleClickOutside);
   },
   beforeUnmount() {
-    document.removeEventListener('click', this.handleClickOutside)
+    document.removeEventListener("click", this.handleClickOutside);
   },
   data() {
     return {
-      query: '',
+      query: "",
       loading: false,
       dropdown: {
-        visible: false
+        visible: false,
       },
       articles: [],
       error: null,
-      lastSearchQuery: ''
-    }
+      lastSearchQuery: "",
+    };
   },
   computed: {
     haveArticles() {
-      return this.articles.length > 0
+      return this.articles.length > 0;
     },
     haveErrors() {
-      return this.error !== null
+      return this.error !== null;
     },
     initial() {
-      return !this.lastSearchQuery && !this.loading && !this.haveArticles && !this.haveErrors
+      return (
+        !this.lastSearchQuery &&
+        !this.loading &&
+        !this.haveArticles &&
+        !this.haveErrors
+      );
     },
     publishedArticles() {
-      return this.articles.filter(answer => answer.status === 'published')
-    }
+      return this.articles.filter((answer) => answer.status === "published");
+    },
   },
   watch: {},
   methods: {
     search() {
       if (!this.query || this.query === this.lastSearchQuery) {
-        document.getElementById("search-input").focus()
-        return
+        document.getElementById("search-input").focus();
+        return;
       }
 
-      this.loading = true
-      this.lastSearchQuery = this.query
-      this.error = null
+      this.loading = true;
+      this.lastSearchQuery = this.query;
+      this.error = null;
 
       setTimeout(() => {
-        api.request.get(api.endpoints.articles.search({
-          query: this.lastSearchQuery
-        }))
+        api.request
+          .get(
+            api.endpoints.articles.search({
+              query: this.lastSearchQuery,
+            })
+          )
           .then((response) => {
-            if (this.lastSearchQuery === 'empty') {
-              this.articles = []
-            }
-            else if (this.lastSearchQuery === 'error') {
-              this.error = 'Error'
-            }
-            else {
-              this.articles = response.data
+            if (this.lastSearchQuery === "empty") {
+              this.articles = [];
+            } else if (this.lastSearchQuery === "error") {
+              this.error = "Error";
+            } else {
+              this.articles = response.data;
             }
           })
           .catch((error) => {
-            this.error = error
+            this.error = error;
           })
           .finally(() => {
-            this.loading = false
-            this.dropdown.visible = true
-          })
-      }, 1000)
+            this.loading = false;
+            this.dropdown.visible = true;
+          });
+      }, 1000);
     },
     showDropdown() {
-      this.dropdown.visible = true
+      this.dropdown.visible = true;
     },
     hideDropdown() {
-      this.dropdown.visible = false
+      this.dropdown.visible = false;
     },
     handleClickOutside(event) {
-      if (this.$refs.searchArea && !this.$refs.searchArea.contains(event.target)) {
-        this.hideDropdown()
+      if (
+        this.$refs.searchArea &&
+        !this.$refs.searchArea.contains(event.target)
+      ) {
+        this.hideDropdown();
       }
     },
     reset() {
-      this.query = ''
-      this.loading = false
-      this.articles = []
-      this.error = null
-      this.lastSearchQuery = ''
+      this.query = "";
+      this.loading = false;
+      this.articles = [];
+      this.error = null;
+      this.lastSearchQuery = "";
 
-      document.getElementById("search-input").focus()
+      document.getElementById("search-input").focus();
     },
     showArticle(article) {
-      this.dropdown.visible = false
-      prompt(JSON.stringify(article))
-    }
+      this.dropdown.visible = false;
+      prompt(JSON.stringify(article));
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/_variables.scss';
+@import "@/scss/_variables.scss";
 
 .search-area {
   width: 720px;

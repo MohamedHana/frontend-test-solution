@@ -8,20 +8,20 @@
 export default {
   name: "Body",
   components: {},
-  created() { },
-  mounted() { },
-  beforeUnmount() { },
+  created() {},
+  mounted() {},
+  beforeUnmount() {},
   data() {
-    return {}
+    return {};
   },
   computed: {},
   watch: {},
   methods: {},
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/_variables.scss';
+@import "@/scss/_variables.scss";
 
 #body-wrapper {
   background: $body-background;

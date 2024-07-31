@@ -7,7 +7,9 @@
           <span>
             {{ article.title }}
           </span>
-          <span class="caption">Updated {{ article.updatedOn | updatedOnDate }}</span>
+          <span class="caption"
+            >Updated {{ article.updatedOn | updatedOnDate }}</span
+          >
         </div>
       </div>
       <i class="fas fa-chevron-right"></i>
@@ -19,30 +21,30 @@
 export default {
   name: "ArticleItem",
   components: {},
-  created() { },
-  mounted() { },
-  beforeUnmount() { },
+  created() {},
+  mounted() {},
+  beforeUnmount() {},
   props: {
     article: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
-    return {}
+    return {};
   },
   computed: {},
   watch: {},
   methods: {
     showArticle() {
-      prompt(JSON.stringify(this.article))
-    }
+      prompt(JSON.stringify(this.article));
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/_variables.scss';
+@import "@/scss/_variables.scss";
 
 .article-item {
   background-color: $white;

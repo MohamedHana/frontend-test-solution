@@ -25,7 +25,7 @@
                 <h2>{{ category.title }}</h2>
                 <p>Last update {{ category.updatedOn | timeAgo }}</p>
               </div>
-              <hr class="line-separator">
+              <hr class="line-separator" />
               <div class="bottom">
                 <div class="info">
                   <i class="fa fa-info-circle"></i>
@@ -41,18 +41,26 @@
               <li v-for="i in 5" class="loading-placeholder"></li>
             </template>
             <template v-else>
-              <article-item v-for="article in publishedArticles" :key="article.id" :article="article"></article-item>
+              <article-item
+                v-for="article in publishedArticles"
+                :key="article.id"
+                :article="article"
+              ></article-item>
             </template>
           </ul>
         </div>
       </div>
     </div>
     <template v-if="otherCategories.length > 0">
-      <hr class="line-separator">
+      <hr class="line-separator" />
       <div class="other-categories-area">
         <h2 class="title">Other categories</h2>
         <div v-if="otherCategories.length <= 3" class="categories-grid">
-          <category-card v-for="category in otherCategories" :key="category.id" :category="category"></category-card>
+          <category-card
+            v-for="category in otherCategories"
+            :key="category.id"
+            :category="category"
+          ></category-card>
         </div>
         <Carousel :categories="otherCategories" v-else />
       </div>
@@ -61,90 +69,102 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
-import api from '@/api'
-import CategoryCard from '@/components/CategoryCard.vue'
-import ArticleItem from './components/ArticleItem.vue'
-import Carousel from './components/Carousel.vue'
+import { mapActions, mapGetters } from "vuex";
+import api from "@/api";
+import CategoryCard from "@/components/CategoryCard.vue";
+import ArticleItem from "./components/ArticleItem.vue";
+import Carousel from "./components/Carousel.vue";
 
 export default {
   name: "CategoryPage",
   components: {
     CategoryCard,
     ArticleItem,
-    Carousel
+    Carousel,
   },
   created() {
     if (!this.haveCategories && !this.categoriesAreLoading) {
-      this.fetchCategories()
+      this.fetchCategories();
     }
 
-    this.fetchCategoryArticles(this.$route.params.id)
+    this.fetchCategoryArticles(this.$route.params.id);
   },
-  mounted() { },
-  beforeUnmount() { },
+  mounted() {},
+  beforeUnmount() {},
   data() {
     return {
       articles: {
         loading: false,
         error: null,
-        data: []
-      }
-    }
+        data: [],
+      },
+    };
   },
   computed: {
-    ...mapGetters(['categories', 'haveCategories', 'categoriesAreLoading', 'categoriesError']),
+    ...mapGetters([
+      "categories",
+      "haveCategories",
+      "categoriesAreLoading",
+      "categoriesError",
+    ]),
     articlesAreLoading() {
-      return this.articles.loading
+      return this.articles.loading;
     },
     categoryIsLoading() {
-      return !this.haveCategories || this.categoriesAreLoading
+      return !this.haveCategories || this.categoriesAreLoading;
     },
     category() {
-      return this.categories.find(category => category.id === this.$route.params.id)
+      return this.categories.find(
+        (category) => category.id === this.$route.params.id
+      );
     },
     publishedArticles() {
-      return this.articles.data.filter(article => article.status === 'published')
+      return this.articles.data.filter(
+        (article) => article.status === "archived"
+      );
     },
     otherCategories() {
-      return this.categories.filter((category, index) => category.id !== this.$route.params.id)
-    }
+      return this.categories.filter(
+        (category, index) => category.id !== this.$route.params.id
+      );
+    },
   },
   watch: {
-    '$route.params.id': function (newId) {
-      this.fetchCategoryArticles(newId)
+    "$route.params.id": function (newId) {
+      this.fetchCategoryArticles(newId);
 
       window.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
-    }
+    },
   },
   methods: {
-    ...mapActions(['fetchCategories']),
+    ...mapActions(["fetchCategories"]),
     fetchCategoryArticles(categoryId) {
-      this.articles.loading = true
-      this.articles.error = null
+      this.articles.loading = true;
+      this.articles.error = null;
 
       setTimeout(() => {
-        api.request.get(api.endpoints.categories.getArticles(categoryId))
+        api.request
+          .get(api.endpoints.categories.getArticles(categoryId))
           .then((response) => {
-            this.articles.data = response.data
+            this.articles.data = response.data;
           })
           .catch((error) => {
-            this.articles.error = error
+            this.articles.error = error;
           })
           .finally(() => {
-            this.articles.loading = false
-          })
-      }, 1000)
-    }
+            this.articles.loading = false;
+          });
+      }, 1000);
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/_variables.scss';
+@import "@/scss/_variables.scss";
 
 .container {
   max-width: 1200px;
@@ -229,7 +249,6 @@ export default {
       font-size: 11px;
       font-weight: 400;
       line-height: 22px;
-
     }
 
     .articles-count {
@@ -327,27 +346,58 @@ export default {
   }
 }
 
-.categories-grid {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  gap: 20px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  margin-top: 25px;
-  margin-bottom: 60px;
-}
-
 .other-categories-area {
   .title {
     text-align: center;
     font-size: 1.5rem;
     margin-top: 40px;
     color: $text-gray;
+  }
+
+  .categories-grid {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    gap: 20px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin-top: 25px;
+    margin-bottom: 60px;
+  }
+}
+
+.ie10-class {
+  .sidebar {
+    width: 28%;
+  }
+
+  .listing-area {
+    width: 66%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .ie10-class {
+    .sidebar {
+      display: block;
+      position: relative;
+      width: 100%;
+    }
+
+    .listing-area {
+      display: block;
+      position: relative;
+      width: 100%;
+    }
+
+    .other-categories-area {
+      display: block;
+      position: relative;
+    }
   }
 }
 </style>

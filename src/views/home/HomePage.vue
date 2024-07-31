@@ -171,14 +171,19 @@ export default {
   }
 }
 
-.old-browsers-class {
-  .categories-grid {
-    width: 96%;
+.ie10-class {
+  .container {
+    max-width: none;
+    padding: 60px 30px;
+  }
+
+  .categories-grid,
+  .loading-area {
+    width: 100%;
     margin: 0 auto;
     overflow: hidden;
 
     &::after {
-      // content: "";
       display: table;
       clear: both;
     }

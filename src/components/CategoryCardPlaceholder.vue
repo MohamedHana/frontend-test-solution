@@ -6,21 +6,21 @@
 export default {
   name: "CategoryCardPlaceholder",
   components: {},
-  created() { },
-  mounted() { },
-  beforeUnmount() { },
+  created() {},
+  mounted() {},
+  beforeUnmount() {},
   props: {},
   data() {
-    return {}
+    return {};
   },
   computed: {},
   watch: {},
   methods: {},
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/_variables.scss';
+@import "@/scss/_variables.scss";
 
 .category-card-placeholder {
   -webkit-box-flex: 0;
@@ -47,7 +47,14 @@ export default {
   -webkit-animation-timing-function: linear;
   animation-timing-function: linear;
   background: $white;
-  background: -webkit-gradient(linear, left top, right top, from(#eeeeee), color-stop(8%, #dddddd), to(#eeeeee));
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#eeeeee),
+    color-stop(8%, #dddddd),
+    to(#eeeeee)
+  );
   background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
   background-size: 1000px 104px;
   height: 200px;
@@ -55,23 +62,13 @@ export default {
   overflow: hidden;
 }
 
-@-webkit-keyframes placeHolderShimmer {
-  0% {
-    background-position: -468px 0;
-  }
-
-  100% {
-    background-position: 468px 0;
-  }
-}
-
-@keyframes placeHolderShimmer {
-  0% {
-    background-position: -468px 0;
-  }
-
-  100% {
-    background-position: 468px 0;
+.ie10-class {
+  .category-card-placeholder {
+    width: 315px;
+    background-color: $white;
+    background: $white;
+    float: left;
+    margin: 15px;
   }
 }
 </style>
