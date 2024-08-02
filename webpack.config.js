@@ -1,90 +1,86 @@
-'use strict'
+"use strict";
 
 const path = require("path");
 const dataObj = require("./data/data.json");
 
 module.exports = {
-	entry: [
-		'babel-polyfill',
-		'./src/app.js'
-	],
-	output: {
-		path: path.resolve(__dirname, './dist'),
-		publicPath: '/dist/',
-		filename: 'bundle.js'
-	},
-	module: {
-		rules: [{
-			test: /\.vue$/,
-			use: 'vue-loader'
-		},
-		{
-			test: /\.scss$/,
-			use: [
-				'vue-style-loader',
-				'css-loader',
-				'sass-loader',
-			]
-		},
-		{
-			test: /\.(ttf|eot|woff|woff2)$/,
-			use: {
-				loader: 'url-loader',
-				options: {
-					name: '[name].[ext]',
-				},
-			},
-		},
-		{
-			test: /\.js$/,
-			exclude: /node_modules/,
-			use: {
-				loader: 'babel-loader',
-				options: {
-					presets: ['@babel/preset-env']
-				}
-			}
-		}]
-	},
-	plugins: [],
-	resolve: {
-		alias: {
-			fonts: path.resolve(__dirname, 'src/assets/fonts'),
-			'@': path.resolve(__dirname, 'src'),
-		}
-	},
-	devServer: {
-		contentBase: path.join(__dirname, 'public'),
-		port: 9000,
-		historyApiFallback: true,
-		disableHostCheck: true,
-		host: '0.0.0.0',
-		before: function (app, server, compiler) {
-			app.get('/api/categories', function (req, res) {
-				res.json(dataObj.categories);
-			});
+  entry: ["babel-polyfill", "./src/app.js"],
+  output: {
+    path: path.resolve(__dirname, "./dist"),
+    publicPath: "/dist/",
+    filename: "bundle.js",
+  },
+  module: {
+    rules: [
+      {
+        test: /\.vue$/,
+        use: "vue-loader",
+      },
+      {
+        test: /\.scss$/,
+        use: ["vue-style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.(ttf|eot|woff|woff2)$/,
+        use: {
+          loader: "url-loader",
+          options: {
+            name: "[name].[ext]",
+          },
+        },
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+          },
+        },
+      },
+    ],
+  },
+  plugins: [],
+  resolve: {
+    alias: {
+      fonts: path.resolve(__dirname, "src/assets/fonts"),
+      "@": path.resolve(__dirname, "src"),
+    },
+  },
+  devServer: {
+    contentBase: path.join(__dirname, "public"),
+    port: 9000,
+    historyApiFallback: true,
+    disableHostCheck: true,
+    host: "0.0.0.0",
+    before: function (app, server, compiler) {
+      app.get("/api/categories", function (req, res) {
+        res.json(dataObj.categories);
+      });
 
-			app.get('/api/category/*', function (req, res) {
-				res.json(dataObj.articles);
-			});
+      app.get("/api/category/*", function (req, res) {
+        res.json(dataObj.articles);
+      });
 
-			app.get('/api/author/*', function (req, res) {
-				let author = {};
-				const authorId = req.params['0'];
+      app.get("/api/author/*", function (req, res) {
+        let author = {};
+        const authorId = req.params["0"];
 
-				for (let index = 0; index < dataObj.authors.length; index++) {
-					if (dataObj.authors[index].id === authorId) {
-						author = dataObj.authors[index];
-						break;
-					}
+        for (let index = 0; index < dataObj.authors.length; index++) {
+          if (dataObj.authors[index].id === authorId) {
+            author = dataObj.authors[index];
+            break;
+          }
+        }
+        res.json(author);
+      });
 
-				}
-				res.json(author);
-			});
+      app.get("/api/search/*", function (req, res) {
+        const query = req.params["0"];
 
-			app.get('/api/search/*', function (req, res) {
-				res.json(dataObj.articles);
-			});
-		}
-	}
-}
+        res.json(dataObj.articles);
+      });
+    },
+  },
+};

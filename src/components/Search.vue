@@ -113,6 +113,9 @@ export default {
         return;
       }
 
+      this.$router.push({ name: "SearchPage", params: { query: this.query } });
+      return;
+
       this.loading = true;
       this.lastSearchQuery = this.query;
       this.error = null;

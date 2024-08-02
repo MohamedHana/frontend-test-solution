@@ -18,18 +18,24 @@ const routerOptions = [
     meta: {},
   },
   {
+    path: "/search/:query",
+    name: "SearchPage",
+    component: "search/SearchPage",
+    meta: {},
+  },
+  {
     path: "/:pathMatch(.*)*",
     name: "PageNotFound",
     component: "PageNotFound",
     meta: {},
-  }
-]
+  },
+];
 
-const routes = routerOptions.map(route => {
+const routes = routerOptions.map((route) => {
   return {
     ...route,
     component: () => import(`../views/${route.component}.vue`),
-  }
-})
+  };
+});
 
-export default routes
+export default routes;
